@@ -1,0 +1,44 @@
+
+.font {
+    font-family: "Shadows Into Light", cursive;
+    /* https://fonts.google.com/selection/embed */
+}
+
+.importantCard { background-color: #EC7063; }
+.normalCard { background-color: #FFFFCC; }
+
+.btn-dark {
+    padding: 0 7rem;
+}
+
+.textBold { font-weight: bold; }
+
+.card {
+    width: 20rem;
+    height: 20rem;
+    position: relative;
+    box-shadow: 0 15px 12px 0 #00000062;
+}
+
+.bi-x-lg { 
+    font-size: 1.5rem; 
+}
+
+.cross {
+    position: absolute;
+    margin: 0.5rem 0.5rem 0 0;
+    top: 0;
+    right: 0;
+}
+
+.card-title { 
+    margin: 0; 
+    display: flex;
+    align-items: center;
+    width: 15rem;
+    margin-bottom: 1rem;
+}
+
+.flex-container {
+    display: flex;
+}
