@@ -6,23 +6,44 @@ import { useState, useRef } from 'react';
 export const PostControl = () => {
     const titleRef = useRef();
     const descripRef = useRef();
-    const [alert, setAlert] = useState('');
+    const importatRef = useRef();
+    const [ALERT, setAlert] = useState('');
+
+    function CleanInpts(title, description) {
+        title.current.value = '';
+        description.current.value = '';
+    };
 
     function AddPost() {    
         const titlePost = titleRef.current.value;
         const descripPost = descripRef.current.value;
+        const importantPost = importatRef.current.checked;
         
         if (titlePost.trim() === '' || descripPost.trim() === '' ) {
             setAlert('Campos vacios...');
             setTimeout(() => { setAlert('') }, 3000);
             return;
+            
+        } else {
+
+            const Post= {
+                title: titlePost,
+                description: descripPost,
+                important: importantPost
+            };
+
+            const NEWPOSTS = [...POSTS, Post];
+            setPOSTS(NEWPOSTS);
+            
+            CleanInpts(titleRef, descripRef);
+            alert('¡Post Agregado!');
         };
     };
     
-    const POSTS = [ 
+    const [POSTS, setPOSTS] = useState([ 
         // {title: 'Post Normal', description: "Esto es un Post Normal", important: false},
         // {title: 'Post Importante', description: 'Esto es un Post Importante', important: true}
-    ];
+    ]);
 
     return (
         <div className="container mt-5">
@@ -33,7 +54,7 @@ export const PostControl = () => {
                 <input type="text" ref={descripRef} className="form-control description" placeholder="Descripcion" />
 
                 <div className='form-check mt-2'>
-                    <input className='form-check-input' type='checkbox' />
+                    <input className='form-check-input' ref={importatRef} type='checkbox' />
                     <label className='form-check-label me-5' style={{color: '#fff'}}>Importante!</label>
                 </div>
 
@@ -41,7 +62,7 @@ export const PostControl = () => {
 
             </div>
 
-            <div class="alert alert-danger mt-2" role="alert" hidden={!alert}>{alert}</div>
+            <div class="alert alert-danger mt-2" role="alert" hidden={!ALERT}>{ALERT}</div>
 
             <div className="d-flex gap-4 mt-5">
                 {
