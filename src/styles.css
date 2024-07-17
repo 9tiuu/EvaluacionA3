@@ -1,4 +1,3 @@
-
 .font {
     font-family: "Shadows Into Light", cursive;
     /* https://fonts.google.com/selection/embed */
@@ -14,10 +13,11 @@
 .textBold { font-weight: bold; }
 
 .card {
-    width: 20rem;
-    height: 20rem;
+    width: 18rem;
+    height: 18rem;
     position: relative;
     box-shadow: 0 15px 12px 0 #00000062;
+    /* transform: rotate(2deg); */
 }
 
 .bi-x-lg { 
@@ -26,7 +26,7 @@
 
 .cross {
     position: absolute;
-    margin: 0.5rem 0.5rem 0 0;
+    margin: .5rem .5rem 0 0;
     top: 0;
     right: 0;
 }
@@ -41,4 +41,9 @@
 
 .flex-container {
     display: flex;
+}
+
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(4, 0fr);
 }

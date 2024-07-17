@@ -9,9 +9,10 @@ export const PostControl = () => {
     const importatRef = useRef();
     const [ALERT, setAlert] = useState('');
 
-    function CleanInpts(title, description) {
+    function CleanInpts(title, description, important) {
         title.current.value = '';
         description.current.value = '';
+        important.current.checked = false;
     };
 
     function AddPost() {    
@@ -26,7 +27,7 @@ export const PostControl = () => {
             
         } else {
 
-            const Post= {
+            const Post = {
                 title: titlePost,
                 description: descripPost,
                 important: importantPost
@@ -35,8 +36,8 @@ export const PostControl = () => {
             const NEWPOSTS = [...POSTS, Post];
             setPOSTS(NEWPOSTS);
             
-            CleanInpts(titleRef, descripRef);
-            alert('¡Post Agregado!');
+            CleanInpts(titleRef, descripRef, importatRef);
+            alert('Â¡Post Agregado!');
         };
     };
     
@@ -51,7 +52,7 @@ export const PostControl = () => {
             <div className="d-flex align-item-center gap-4">
                 
                 <input type="text" ref={titleRef} className="form-control title py-2" placeholder="Titulo"  />
-                <input type="text" ref={descripRef} className="form-control description" placeholder="Descripcion" />
+                <input type="text" ref={descripRef} className="form-control description py-2" placeholder="Descripcion" />
 
                 <div className='form-check mt-2'>
                     <input className='form-check-input' ref={importatRef} type='checkbox' />
@@ -64,10 +65,11 @@ export const PostControl = () => {
 
             <div class="alert alert-danger mt-2" role="alert" hidden={!ALERT}>{ALERT}</div>
 
-            <div className="d-flex gap-4 mt-5">
-                {
+            <div className="posts-container gap-4 mt-5">
+                {   
                     // <Posts important={false}/>
-                    POSTS.map((post) => <Posts title={post.title} description={post.description} important={post.important}/>)
+                    POSTS.map((post) => <Posts title={post.title} description={post.description} important={post.important} />)
+                    
                 }
             </div>
         </div>
