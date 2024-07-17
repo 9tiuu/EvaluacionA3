@@ -2,8 +2,10 @@ import React from 'react';
 import '../styles.css';
 import { Posts } from './Posts';
 import { useState, useRef } from 'react';
+import { v4 as uuid } from 'uuid';
 
 export const PostControl = () => {
+    const postID = uuid();
     const titleRef = useRef();
     const descripRef = useRef();
     const importatRef = useRef();
@@ -28,6 +30,7 @@ export const PostControl = () => {
         } else {
 
             const Post = {
+                id: postID,
                 title: titlePost,
                 description: descripPost,
                 important: importantPost
@@ -37,8 +40,14 @@ export const PostControl = () => {
             setPOSTS(NEWPOSTS);
             
             CleanInpts(titleRef, descripRef, importatRef);
-            alert('Â¡Post Agregado!');
+            alert('¡Post Agregado!');
         };
+    };
+
+    function RemovePost(id) {   
+        const filetID = POSTS.filter(post => id !== post.id);
+        setPOSTS(filetID);  
+        console.log(filetID);   
     };
     
     const [POSTS, setPOSTS] = useState([ 
@@ -68,8 +77,8 @@ export const PostControl = () => {
             <div className="posts-container gap-4 mt-5">
                 {   
                     // <Posts important={false}/>
-                    POSTS.map((post) => <Posts title={post.title} description={post.description} important={post.important} />)
-                    
+                    // POSTS.map((post) => <Posts title={post.title} description={post.description} important={post.important} />)
+                    POSTS.map((post) => <Posts post={post} RemovePost={RemovePost} key={post.id}/>)                  
                 }
             </div>
         </div>
