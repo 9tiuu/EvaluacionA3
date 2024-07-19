@@ -35,7 +35,7 @@
     margin: 0; 
     display: flex;
     align-items: center;
-    width: 15rem;
+    width: 13rem;
     margin-bottom: 1rem;
 }
 
@@ -47,3 +47,7 @@
     display: grid;
     grid-template-columns: repeat(4, 0fr);
 }
+
+.rotation-1 { transform: rotate(2deg); }
+.rotation-2 { transform: rotate(-2deg); }
+.rotation-3 { transform: rotate(0deg); }
